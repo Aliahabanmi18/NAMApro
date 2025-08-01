@@ -1,0 +1,39 @@
+body {
+  font-family: 'Tajawal', sans-serif;
+}
+
+body[data-theme="light"] {
+  background: #fdf8f5;
+  color: #001F2D;
+}
+
+body[data-theme="dark"] {
+  background: #001F2D;
+  color: #FFFFFF;
+}
+
+.sidebar {
+  background: #0f1a45;
+  color: #fff;
+}
+
+.sidebar .icon-lg {
+  font-size: 4rem;
+}
+
+.nav-btn {
+  color: #fff;
+  text-align: right;
+}
+
+.nav-btn.active {
+  background: #fff;
+  color: #0f1a45;
+}
+
+.panel h5 {
+  color: #fff;
+}
+button:active {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
