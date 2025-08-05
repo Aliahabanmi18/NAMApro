@@ -1,79 +1,143 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <title>لوحة تحكم مالية - نما</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link href="NAMA.css" rel="stylesheet">
-</head>
-<body data-theme="light">
-  <button id="themeToggle" class="btn btn-primary position-absolute top-0 end-0 m-3"><i class="bi bi-moon-stars-fill"></i></button>
+  <head>
+    <meta charset="UTF-8" />
+    <title>لوحة تحكم مالية - نما</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="NAMA.css" rel="stylesheet" />
+  </head>
+  <body data-theme="light">
+    <button
+      id="themeToggle"
+      class="btn btn-primary position-absolute top-0 end-0 m-3"
+    >
+      <i class="bi bi-moon-stars-fill"></i>
+    </button>
 
-  <div class="container-fluid">
-    <div class="row vh-100">
-      <!-- Sidebar -->
-      <nav class="col-md-2 d-flex flex-column sidebar p-4">
-        <div class="text-center mb-4">
-          <i class="bi bi-person-circle icon-lg"></i>
-          <h5 class="mt-3">نما</h5>
-        </div>
-        <button class="btn nav-btn active mb-2" data-section="dashboard"><i class="bi bi-speedometer2 me-2"></i>لوحة التحكم</button>
-        <button class="btn nav-btn mb-2" data-section="analytics"><i class="bi bi-bar-chart-line me-2"></i>التحليلات</button>
-        <button class="btn nav-btn mb-2" data-section="reports"><i class="bi bi-file-earmark-text me-2"></i>التقارير</button>
-      </nav>
+    <div class="container-fluid">
+      <div class="row vh-100">
+        <!-- Sidebar -->
+        <nav class="col-md-2 d-flex flex-column sidebar p-4">
+          <div class="text-center mb-4">
+            <i class="bi bi-person-circle icon-lg"></i>
+            <h5 class="mt-3">نما</h5>
+          </div>
+          <button class="btn nav-btn active mb-2" data-section="dashboard">
+            <i class="bi bi-speedometer2 me-2"></i>لوحة التحكم
+          </button>
+          <button class="btn nav-btn mb-2" data-section="analytics">
+            <i class="bi bi-bar-chart-line me-2"></i>التحليلات
+          </button>
+          <button class="btn nav-btn mb-2" data-section="reports">
+            <i class="bi bi-file-earmark-text me-2"></i>التقارير
+          </button>
+        </nav>
 
-      <!-- Main Content -->
-      <main class="col-md-7 p-4">
-        <h1>نظرة عامة مالية</h1>
-        <p class="text-muted">تابع أداء وأفكار عملك</p>
+        <!-- Main Content -->
+        <main class="col-md-7 p-4">
+          <div id="dashboard-section" class="content-section">
+            <h1>نظرة عامة مالية</h1>
+            <p class="text-muted">تابع أداء وأفكار عملك</p>
 
-          <div class="card p-4">
-            <h6><i class="bi bi-lightbulb me-2"></i>total_revenue</h6>
-          <div id="result">
+            <div class="card p-4">
+              <h6>
+                <i class="bi bi-cash-stack me-2"></i>ملخص مالي (من الـ API)
+              </h6>
+              <div id="summary-result" class="row">
+                <!-- Summary data from API will be loaded here -->
+                <p>جاري تحميل الملخص...</p>
+              </div>
+            </div>
 
-        </div>
-  
-    
-        <div class="mb-3">
-          <button id="revenueBtn" class="btn btn-primary">الإيرادات</button>
-          <button id="profitBtn" class="btn btn-outline-primary">صافي الربح</button>
-        </div>
+            <div class="mb-3 mt-4">
+              <button id="revenueBtn" class="btn btn-primary">
+                الإيرادات
+              </button>
+              <button id="profitBtn" class="btn btn-outline-primary">
+                صافي الربح
+              </button>
+            </div>
 
-        <div class="card p-4 chart-section">
-          <h5 id="chartTitle">تحليل الإيرادات مقابل المصروفات</h5>
-          <p id="chartDesc">مقارنة شهرية تُظهر الدخل مقابل التكاليف</p>
-          <canvas id="chartCanvas"></canvas>
-        </div>
+            <div class="card p-4 chart-section">
+              <h5 id="chartTitle">تحليل الإيرادات مقابل المصروفات</h5>
+              <p id="chartDesc">مقارنة شهرية تُظهر الدخل مقابل التكاليف</p>
+              <canvas id="chartCanvas"></canvas>
+            </div>
+          </div>
 
-        <div class="card p-4 income-section mt-4 d-none">
-          <h5><i class="bi bi-receipt me-2"></i>بيان الدخل</h5>
-          <div id="incomeStatement"></div>
-        </div>
-      </main>
+          <div id="analytics-section" class="content-section d-none">
+            <h1>التحليلات المالية</h1>
+            <p class="text-muted">تحليل تفصيلي لأدائك المالي</p>
+            <div class="card p-4">
+              <h5><i class="bi bi-bar-chart-fill me-2"></i>ملخص شهري</h5>
+              <div id="analytics-monthly-summary">
+                <p>جاري تحميل بيانات التحليلات...</p>
+              </div>
+            </div>
+          </div>
 
-      <!-- Sidebar Insights -->
-   
-      <aside class="col-md-3 p-4 panel">
-        <h5>رؤى ذكية</h5>
-        <div class="card mb-3 p-3">
-          <h6><i class="bi bi-graph-up-arrow me-2"></i>نمو قوي</h6>
-          <p>زاد الإيرادات بنسبة 23٪ هذا الربع.</p>
-        </div>
-        <div class="card mb-3 p-3">
-          <h6><i class="bi bi-exclamation-triangle me-2"></i>تحسين التكاليف</h6>
-          <p>النفقات تنمو أسرع من الإيرادات.</p>
-        </div>
-        <div class="card p-3">
-          <h6><i class="bi bi-lightbulb me-2"></i>تحليل AI</h6>
-          <p>📈 الإيرادات المتوقعة: $95K</p>
-          <p>نسبة المصروفات: 58.8٪</p>
-        </div>
-      </aside>
+          <div id="reports-section" class="content-section d-none">
+            <h1>التقارير المالية</h1>
+            <p class="text-muted">تقارير مخصصة حسب الفترة</p>
+            <div class="card p-4">
+              <h5><i class="bi bi-file-text-fill me-2"></i>إنشاء تقرير</h5>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="reportYear" class="form-label">السنة:</label>
+                  <input
+                    type="number"
+                    id="reportYear"
+                    class="form-control"
+                    placeholder="مثال: 2023"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="reportMonth" class="form-label">الشهر:</label>
+                  <input
+                    type="text"
+                    id="reportMonth"
+                    class="form-control"
+                    placeholder="مثال: 2023-01"
+                  />
+                </div>
+              </div>
+              <button id="generateReportBtn" class="btn btn-primary">
+                توليد التقرير
+              </button>
+              <div id="report-output" class="mt-4">
+                <p>سيظهر التقرير هنا...</p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Sidebar Insights -->
+        <aside class="col-md-3 p-4 panel">
+          <h5>رؤى ذكية</h5>
+          <div id="risk-forecast-card" class="card mb-3 p-3">
+            <h6><i class="bi bi-graph-up-arrow me-2"></i>توقعات المخاطر</h6>
+            <p>جاري تحميل توقعات المخاطر...</p>
+          </div>
+          <div class="card mb-3 p-3">
+            <h6><i class="bi bi-exclamation-triangle me-2"></i>تحسين التكاليف</h6>
+            <p>النفقات تنمو أسرع من الإيرادات.</p>
+          </div>
+        </aside>
+      </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="NAMA.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="NAMA.js"></script>
+  </body>
+</html>
